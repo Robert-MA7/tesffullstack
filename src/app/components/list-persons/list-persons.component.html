@@ -1,0 +1,35 @@
+<app-progress-bar *ngIf="loading"></app-progress-bar>
+<div *ngIf="!loading" class="container">
+    <div class="title">
+        <h4>Listado de Personal</h4>
+        <button type="button" class="btn btn-primary" routerLink="/edit">Agregar Persona</button>
+    </div>
+
+    <table *ngIf="listPerson.length > 0" class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">Nombre</th>
+            <th scope="col">Apellido</th>
+            <th scope="col">Fecha Nacimiento</th>
+            <th scope="col">Puesto</th>
+            <th scope="col">Sueldo</th>
+            <th scope="col">Acccion</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of listPerson" class="table-active">
+            <td>{{ item.nombre }}</td>
+            <td>{{ item.apellido }}</td>
+            <td>{{ item.fechaNacimiento }}</td>
+            <td>{{ item.puesto }}</td>
+            <td>{{ item.sueldo }}</td>
+            <td>
+                <button routerLink="/edit/{{ item.id }}" type="button" class="btn btn-info btn-sm">Edit</button>
+                <button (click)="deletePerson(item.id!)" type="button" class="btn btn-secondary btn-sm ms-2">Delete</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <h5 *ngIf="listPerson.length == 0">No hay productos para mostrar</h5>
+</div>
+

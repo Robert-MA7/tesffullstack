@@ -1,0 +1,40 @@
+<app-progress-bar *ngIf="loading"></app-progress-bar>
+<div *ngIf="!loading" class="row mt-1">
+    <div class="col-lg-4 offset-lg-4">
+        <div class="card text-white bg-secondary mb-3" style="max-width: 25rem;">
+            <div class="card-header text-center">{{ operacion }} Persona</div>
+            <div class="card-body">
+                <form [formGroup]="form" (ngSubmit)="addPerson()">
+                    <input formControlName="nombre" type="text" class="form-control" placeholder="Ingrese nombre">
+                    <span *ngIf="form.get('nombre')?.hasError('required') && form.get('name')?.touched">
+                        El campo nombre es <strong>requerido</strong>
+                    </span>
+                    <input formControlName="apellido" type="text" class="form-control mt-2" placeholder="Ingrese Apellido">
+                    <span *ngIf="form.get('apellido')?.hasError('required') && form.get('description')?.touched">
+                        El campo Apellido es <strong>requerido</strong>
+                    </span>
+                    <input formControlName="fechaNacimiento" type="date" class="form-control mt-2" placeholder="Ingrese fechaNacimiento">
+                    <span *ngIf="form.get('fechaNacimiento')?.hasError('required') && form.get('description')?.touched">
+                        El campo fechaNacimiento es <strong>requerido</strong>
+                    </span>
+                    <input formControlName="puesto" type="text" class="form-control mt-2" placeholder="Ingrese Puesto">
+                    <span *ngIf="form.get('puesto')?.hasError('required') && form.get('price')?.touched">
+                        El campo puesto es <strong>requerido</strong>
+                    </span>
+                    <input formControlName="sueldo" type="number" class="form-control mt-2" placeholder="Ingrese Sueldo">
+                    <span *ngIf="form.get('sueldo')?.hasError('required') && form.get('stock')?.touched">
+                        El campo sueldo es <strong>requerido</strong>
+                    </span>
+                    <div class="row mt-2 text-center">
+                        <div class="col-lg-6">
+                            <button routerLink="/" type="button" class="btn btn-secondary">Volver</button>
+                        </div>
+                        <div class="col-lg-6">
+                            <button [disabled]="form.invalid" type="submit" class="btn btn-primary">Aceptar</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
